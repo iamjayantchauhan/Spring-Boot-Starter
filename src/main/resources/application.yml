@@ -1,0 +1,12 @@
+#spring:
+#  data:
+#    mongodb:
+#      database: 'test # Database name.'
+#      host: 'localhost # Mongo server host.'
+#      username: '# Login user of the mongo server.'
+#      password: '# Login password of the mongo server.'
+#      port: '27017 # Mongo server port.'
+#      repositories:
+#        type: auto
+#      uri: 'mongodb://localhost/test # Mongo database URI. When set, host and
+#                port are ignored.'
