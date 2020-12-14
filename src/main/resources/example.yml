@@ -1,0 +1,7 @@
+spring:
+  data:
+    mongodb:
+      database:
+      uri:
+      repositories:
+        type: auto
