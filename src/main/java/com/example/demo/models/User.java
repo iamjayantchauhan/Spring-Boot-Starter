@@ -41,4 +41,10 @@ public class User {
 
     @DBRef
     private Set<Role> roles = new HashSet<>();
+
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.emailAddress = email;
+        this.password = password;
+    }
 }
