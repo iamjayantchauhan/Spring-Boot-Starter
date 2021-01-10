@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.services;
 
 import com.example.demo.models.User;
 import com.example.demo.repositories.UserRepository;
@@ -34,11 +34,7 @@ public class UserService {
     public ResponseEntity<User> getSingleUser(String userId) {
         try {
             Optional<User> getUser = userRepository.findById(userId);
-            if (getUser.isPresent()) {
-                return ResponseEntity.status(HttpStatus.OK).body(getUser.get());
-            } else {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-            }
+            return getUser.map(user -> ResponseEntity.status(HttpStatus.OK).body(user)).orElseGet(() -> ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }

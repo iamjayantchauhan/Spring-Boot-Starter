@@ -1,54 +1,44 @@
 package com.example.demo.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
+
 @Document("users")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
     @Id
     private String userID;
     private String firstName;
     private String lastName;
-    private String emailAddress;
+
     private String mobileNumber;
 
-    public String getUserID() {
-        return userID;
-    }
+    @NotBlank(message = "Email address should not be blank")
+    @Email(message = "Email should be valid")
+    private String emailAddress;
 
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
+    @NotBlank(message = "Password should not be blank")
+    @Size(max = 40)
+    private String username;
 
-    public String getFirstName() {
-        return firstName;
-    }
+    @NotBlank
+    @Size(max = 256)
+    private String password;
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
-
-    public String getMobileNumber() {
-        return mobileNumber;
-    }
-
-    public void setMobileNumber(String mobileNumber) {
-        this.mobileNumber = mobileNumber;
-    }
+    @DBRef
+    private Set<Role> roles = new HashSet<>();
 }
