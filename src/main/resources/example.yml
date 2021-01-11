@@ -5,3 +5,7 @@ spring:
       uri:
       repositories:
         type: auto
+
+applicationConfig:
+  jwtSecret:
+  jwtExpirationMs:
